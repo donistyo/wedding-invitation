@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaEnvelopeOpen } from "react-icons/fa";
 
-export default function Cover({ onOpen }) {
+export default function Cover({ onOpen, guestName, }) {
   const [closing, setClosing] = useState(false);
 
   const handleOpen = () => {
@@ -57,7 +57,7 @@ export default function Cover({ onOpen }) {
           className="font-semibold text-white animate-slide-up"
           style={{ animationDelay: "0.7s", animationFillMode: "both" }}
         >
-          Tamu Undangan
+          {guestName}
         </h3>
 
         <button

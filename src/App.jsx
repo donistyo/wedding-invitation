@@ -20,6 +20,21 @@ export default function App() {
   const [opened, setOpened] = useState(false);
   const [autoScrolling, setAutoScrolling] = useState(false);
 
+  const params = new URLSearchParams(
+    window.location.search
+  );
+
+  const guestName = (
+    params.get("to") || "Tamu Undangan"
+  )
+    .split(" ")
+    .map(
+      word =>
+        word.charAt(0).toUpperCase() +
+        word.slice(1).toLowerCase()
+    )
+    .join(" ");
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
@@ -35,7 +50,7 @@ export default function App() {
   return (
     <>
       {!opened && (
-        <Cover onOpen={() => {
+        <Cover guestName={guestName} onOpen={() => {
           setOpened(true);
           if (!audioEl) {
             audioEl = new Audio("/wedding-music.mp3");
